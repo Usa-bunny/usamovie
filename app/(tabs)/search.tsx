@@ -53,7 +53,7 @@ const Search = () => {
         className="px-5"
         numColumns={3}
         columnWrapperStyle={{
-          justifyContent: "center",
+          justifyContent: "flex-start",
           gap: 16,
           marginVertical: 16,
         }}
@@ -70,6 +70,7 @@ const Search = () => {
                 placeholder="Search movies"
                 value={searchQuery}
                 onChangeText={(text: string) => setSearchQuery(text)}
+                alwaysAutoFocus={true}
               />
             </View>
 

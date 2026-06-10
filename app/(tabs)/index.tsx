@@ -13,6 +13,7 @@ import {
   Image,
   ScrollView,
   Text,
+  TouchableOpacity,
   View,
 } from "react-native";
 
@@ -52,10 +53,12 @@ export default function Index() {
             Error : {moviesError?.message || trendingError?.message}
           </Text>
         ) : (
-          <View className="flex-1 mt-5">
-            <SearchBar
+          <View className="flex-1 mt-5 relative">
+            <SearchBar placeholder="Search for a movie" />
+            {/* trigger searchbar */}
+            <TouchableOpacity
               onPress={() => router.push("/search")}
-              placeholder="Search for a movie"
+              className="absolute inset-0 z-50 flex items-center justify-center h-20 w-full rounded-full"
             />
 
             {trendingMovies && (
@@ -67,7 +70,9 @@ export default function Index() {
                 <FlatList
                   className="mb-4 mt-3"
                   data={trendingMovies}
-                  renderItem={({ item, index }) => <TrendingCard item={item} index={index} />}
+                  renderItem={({ item, index }) => (
+                    <TrendingCard item={item} index={index} />
+                  )}
                   keyExtractor={(item) => item.movie_id.toString()}
                   horizontal
                   showsHorizontalScrollIndicator={false}

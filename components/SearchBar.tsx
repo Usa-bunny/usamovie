@@ -1,5 +1,6 @@
 import { icons } from "@/constants/icons";
-import React from "react";
+import { useFocusEffect } from "expo-router";
+import React, { useCallback, useRef } from "react";
 import { Image, TextInput, View } from "react-native";
 
 const SearchBar = ({
@@ -7,12 +8,28 @@ const SearchBar = ({
   onChangeText,
   placeholder,
   value,
+  alwaysAutoFocus = false,
 }: {
   onPress?: () => void;
-  onChangeText?: (text:string) => void;
+  onChangeText?: (text: string) => void;
   placeholder: string;
   value?: string;
+  alwaysAutoFocus?: boolean;
 }) => {
+  const inpurRef = useRef<TextInput>(null);
+
+  useFocusEffect(
+    useCallback(() => {
+      if (alwaysAutoFocus) {
+        const timer = setTimeout(() => {
+          inpurRef.current?.focus();
+        }, 100);
+
+        return () => clearTimeout(timer);
+      }
+    }, [alwaysAutoFocus]),
+  );
+
   return (
     <View className="flex-row items-center bg-searchBar rounded-full px-5 py-4">
       <Image
@@ -22,6 +39,7 @@ const SearchBar = ({
         tintColor="#ab8bff"
       />
       <TextInput
+        ref={inpurRef}
         onPress={onPress}
         placeholder={placeholder}
         value={value}

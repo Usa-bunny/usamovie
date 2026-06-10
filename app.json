@@ -13,11 +13,12 @@
     },
     "android": {
       "adaptiveIcon": {
-        "backgroundColor": "#ffffff", 
+        "backgroundColor": "#ffffff",
         "foregroundImage": "./assets/images/logo.png"
       },
       "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "package": "com.usa_bunny.usamovie"
     },
     "web": {
       "output": "static",
@@ -41,6 +42,12 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "faf439dc-67f7-48e6-8ed9-6cbef05c353b"
+      }
     }
   }
 }
